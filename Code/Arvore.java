@@ -36,7 +36,7 @@ class Arvore {
 			a.dir = new Nodo(n, true);
 			a.dir.p = a;
 			this.fixaadicao(a.dir);
-		} else if (this.k < a.v) {
+		} else if (this.v < a.v) {
 			a.esq = new Nodo(n, true);
 			a.esq.p = a;
 			this.fixaadicao(a.esq);
