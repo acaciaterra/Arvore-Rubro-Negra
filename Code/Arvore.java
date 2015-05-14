@@ -55,4 +55,43 @@ class Arvore {
 		if (a.v != n) return Arvore.nil;
 		else return a;
 	}
+
+	private void fixaadicao (Nodo z) {
+		Nodo y;
+		while(z.p.ver) {
+			if(z.p == z.p.p.left) {
+				y = z.p.p.right;
+				if(y.ver){
+					z.p.ver = false;
+					y.ver = false;
+					z.p.p.ver = true;
+				}
+				else { // Tio é preto
+					if (z == z.p.dir) {
+						z = z.p;
+						this.rotacao_dir(z.p.p);
+					}
+				}
+				else {
+					y = z.p.p.left;
+					if(y.ver){
+						z.p.ver = false;
+						y.ver = false;
+						z.p.p.ver = true;
+						z = z.p.p;
+					}
+					else {
+						if (z == z.p.esq) {
+							z = z.p;
+							this.rotacao_dir(z);
+						}
+						z.p.ver = false;
+						z.p.p.ver = true;
+						this.rotacao_esq(z.p.p);
+					}
+				}
+			}
+			this.raiz.ver = false;
+		}
+	}
 }
