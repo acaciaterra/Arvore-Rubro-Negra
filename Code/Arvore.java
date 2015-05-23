@@ -132,7 +132,69 @@ class Arvore {
 		if(!cordey) this.fixaremocao(x);
 	}
 
+		private void fixaremocao(Nodo x) {
+			Nodo w;
 
+			while( x != this.raiz &&  !x.red) {
+				if(x == x.p.esq) {
+					w = x.p.dir;
+
+					if(w.ver) { //caso 1
+						w.ver = false;
+						x.p.ver = true;
+						this.rotacao_esq(x.p);
+						w = x.p.dir;
+					}
+					if (!w.esq.ver && !w.dir.ver) { //caso 2
+						w.ver = true;
+						x = x.p;
+					}
+					else {
+						if (!w.dir.ver) { // caso 3
+							w.esq.ver = false;
+							w.ver = true;
+							this.rotacao_esq(w);
+							w = x.p.dir;
+						}
+						//caso 4
+						w.ver = x.p.ver;
+						x.p.ver = false;
+						w.dir.ver = false;
+						this.rotacao_esq(x.p);
+						x = this.raiz;
+					}
+				}
+				else {
+					w = x.p.esq;
+
+					if(w.ver) { //caso 1
+						w.ver = false;
+						x.p.ver = true;
+						this.rotacao_dir(x.p);
+						w = x.p.esq;
+					}
+					if (!w.esq.ver && !w.dir.ver) { //caso 2
+						w.ver = true;
+						x = x.p;
+					}
+					else {
+						if (!w.dir.ver) { // caso 3
+							w.dir.ver = false;
+							w.ver = true;
+							this.rotacao_esq(w);
+							w = x.p.esq;
+						}
+						//caso 4
+						w.ver = x.p.ver;
+						x.p.ver = false;
+						w.esq.ver = false;
+						this.rotacao_dir(x.p);
+						x = this.raiz;
+					}
+				}
+			}
+			x.ver = false;
+		}
 
 
 }
