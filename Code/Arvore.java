@@ -51,9 +51,7 @@ class Arvore {
 	}
 
 	public Nodo encontra (int n) {
-		Nodo a = raiz.busca(n);
-		if (a.v != n) return Arvore.nil;
-		else return a;
+		return this.raiz.encontra(n);
 	}
 
 	private void fixaadicao (Nodo z) {
@@ -61,37 +59,80 @@ class Arvore {
 		while(z.p.ver) {
 			if(z.p == z.p.p.left) {
 				y = z.p.p.right;
-				if(y.ver){
+				if(y.ver){ // caso 1 / tio vermelho
 					z.p.ver = false;
 					y.ver = false;
 					z.p.p.ver = true;
+					z = z.p.p;
 				}
-				else { // Tio é preto
-					if (z == z.p.dir) {
+				else { // tio preto
+					if (z == z.p.dir) { // caso 2
 						z = z.p;
-						this.rotacao_dir(z.p.p);
+						this.rotacao_esq(z);
 					}
-				}
-				else {
-					y = z.p.p.left;
-					if(y.ver){
-						z.p.ver = false;
-						y.ver = false;
-						z.p.p.ver = true;
-						z = z.p.p;
-					}
-					else {
-						if (z == z.p.esq) {
-							z = z.p;
-							this.rotacao_dir(z);
-						}
-						z.p.ver = false;
-						z.p.p.ver = true;
-						this.rotacao_esq(z.p.p);
-					}
+					// caso 3
+					z.p.ver = false;
+					z.p.p.ver = true;
+					this.rotacao_dir(z.p.p);
 				}
 			}
-			this.raiz.ver = false;
+			else {
+				y = z.p.p.left;
+				if(y.ver){ // caso 1
+					z.p.ver = false;
+					y.ver = false;
+					z.p.p.ver = true;
+					z = z.p.p;
+				}
+				else {
+					if (z == z.p.esq) { // caso 2
+						z = z.p;
+						this.rotacao_dir(z);
+					}
+					// caso 3
+					z.p.ver = false;
+					z.p.p.ver = true;
+					this.rotacao_esq(z.p.p);
+				}
+			}
 		}
+		this.raiz.ver = false;
 	}
+
+	public void remove(int n) {
+		Nodo z = this.encontra(n);
+		Nodo x, y = z;
+		boolean cordey = y.ver;
+
+		if (z.esq == Arvore.nil) {
+			x = z.dir;
+			this.transplant(z, z.dir);
+		}
+		else if (z.dir == Arvore.nil) {
+			x = z.esq;
+			this.transplant(z, z.esq);
+		}
+		else {
+			y = z.sucessor();
+			cordey = y.red;
+			x = y.right;
+
+			if (y.p == z) x.p = y;
+			else {
+				this.transplant(y, y.dir);
+				y.dir = z.dir;
+				y.dir.p = y;
+			}
+			this.transplant(z,y);
+			y.esq = z.esq;
+			y.esq.p = y;
+			y.ver = z.ver;
+		}
+
+		if(!cordey) this.fixaremocao(x);
+	}
+
+
+
+
 }
