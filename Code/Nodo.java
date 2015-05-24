@@ -16,9 +16,9 @@ class Nodo {
 		this.p = this.esq = this.dir = Arvore.nil;
 	}
 
-	public Nodo busca(int n){
-		if (this.n > this.v && this.dir != Arvore.nil) return this.dir.busca(n);
-		else if (this.n < this.v && this.esq != Arvore.nil) return this.esq.busca(n);
+	public Nodo encontra(int n){
+		if (this.n > this.v && this.dir != Arvore.nil) return this.dir.encontra(n);
+		else if (this.n < this.v && this.esq != Arvore.nil) return this.esq.encontra(n);
 		else return this;
 	}
 
@@ -33,8 +33,24 @@ class Nodo {
 		else return this;
 	}
 
-/*  public Nodo maximo(){
+  public Nodo maximo(){
 		if (this.dir != Arvore.nil) return dir.minimo();
 		else return this;
-	} */
+	}
+
+	public void inorderWalk(){
+		if (this.esq != Arvore.nil) this.esq.inorderWalk();
+		System.out.println(this.v);
+		if (this.dir != Arvore.nil) this.dir.inorderWalk();
+	}
+
+	public Nodo predecessor(){
+		if (this.esq != Arvore.nil) return this.esq.maximo();
+		else return this;
+	}
+
+	public Nodo sucessor(){
+		if (this.dir != Arvore.nil) return this.dir.minimo();
+		else return this;
+	}
 }

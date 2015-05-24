@@ -196,5 +196,8 @@ class Arvore {
 			x.ver = false;
 		}
 
+		public void inorderWalk() {
+			this.raiz.inorderWalk();
+		}
 
 }
