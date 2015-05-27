@@ -215,4 +215,13 @@ class Arvore {
 			System.out.println("\tnil [stye = filed, fillcolor = black, fontcolor = white];");
 			System.out.println("}");
 		}
+
+		public Arvore busca50 (int v) {
+			Arvore x = new Arvore();
+			Contador a = new Contador(0);
+
+			this.raiz.inorderWalk(x, a, v);
+
+			return x;
+		}
 }
