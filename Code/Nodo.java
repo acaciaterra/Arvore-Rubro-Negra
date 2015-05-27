@@ -33,10 +33,10 @@ class Nodo {
 		else return this;
 	}
 
-  public Nodo maximo(){
+  /* public Nodo maximo(){
 		if (this.dir != Arvore.nil) return dir.minimo();
 		else return this;
-	}
+	} */
 
 	public void inorderWalk(){
 		if (this.esq != Arvore.nil) this.esq.inorderWalk();
@@ -44,7 +44,7 @@ class Nodo {
 		if (this.dir != Arvore.nil) this.dir.inorderWalk();
 	}
 
-	public Nodo predecessor(){
+	/* public Nodo predecessor(){
 		if (this.esq != Arvore.nil) return this.esq.maximo();
 		else return this;
 	}
@@ -52,5 +52,5 @@ class Nodo {
 	public Nodo sucessor(){
 		if (this.dir != Arvore.nil) return this.dir.minimo();
 		else return this;
-	}
+	} */
 }

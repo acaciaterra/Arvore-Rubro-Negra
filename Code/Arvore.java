@@ -72,8 +72,7 @@ class Arvore {
 					y.ver = false;
 					z.p.p.ver = true;
 					z = z.p.p;
-				}
-				else { // tio preto
+				}	else { // tio preto
 					if (z == z.p.dir) { // caso 2
 						z = z.p;
 						this.rotacao_esq(z);
@@ -83,16 +82,14 @@ class Arvore {
 					z.p.p.ver = true;
 					this.rotacao_dir(z.p.p);
 				}
-			}
-			else {
+			}	else {
 				y = z.p.p.esq;
 				if(y.ver){ // caso 1
 					z.p.ver = false;
 					y.ver = false;
 					z.p.p.ver = true;
 					z = z.p.p;
-				}
-				else {
+				}	else {
 					if (z == z.p.esq) { // caso 2
 						z = z.p;
 						this.rotacao_dir(z);
@@ -115,12 +112,10 @@ class Arvore {
 		if (z.esq == Arvore.nil) {
 			x = z.dir;
 			this.transplant(z, z.dir);
-		}
-		else if (z.dir == Arvore.nil) {
+		}	else if (z.dir == Arvore.nil) {
 			x = z.esq;
 			this.transplant(z, z.esq);
-		}
-		else {
+		}	else {
 			y = z.sucessor();
 			cordey = y.ver;
 			x = y.dir;
@@ -156,8 +151,7 @@ class Arvore {
 					if (!w.esq.ver && !w.dir.ver) { //caso 2
 						w.ver = true;
 						x = x.p;
-					}
-					else {
+					}	else {
 						if (!w.dir.ver) { // caso 3
 							w.esq.ver = false;
 							w.ver = true;
@@ -171,8 +165,7 @@ class Arvore {
 						this.rotacao_esq(x.p);
 						x = this.raiz;
 					}
-				}
-				else {
+				}	else {
 					w = x.p.esq;
 
 					if(w.ver) { //caso 1
@@ -184,8 +177,7 @@ class Arvore {
 					if (!w.esq.ver && !w.dir.ver) { //caso 2
 						w.ver = true;
 						x = x.p;
-					}
-					else {
+					}	else {
 						if (!w.dir.ver) { // caso 3
 							w.dir.ver = false;
 							w.ver = true;
