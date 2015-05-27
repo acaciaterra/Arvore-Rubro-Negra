@@ -2,7 +2,11 @@ class Arvore {
 	public Nodo raiz;
 	public static Nodo nil = new Nodo(0, false);
 
-	public Arvore (int n){
+	public Arvore () {
+		this.raiz = Arvore.nil;
+	}
+
+	public Arvore (int v) {
 		this.raiz = new Nodo(n, false);
 	}
 
@@ -33,7 +37,7 @@ class Arvore {
 	public void adiciona (int n) {
 		if (this.raiz == Arvore.nil) {
 			this.raiz = new Nodo (n, false);
-		} else {	
+		} else {
 			Nodo a = this.encontra(n);
 			if (n > a.v) {
 				a.dir = new Nodo(n, true);
@@ -204,4 +208,19 @@ class Arvore {
 			this.raiz.inorderWalk();
 		}
 
+		public Nodo minimo() {
+			return this.raiz.minimo();
+		}
+
+		public Nodo maximo() {
+			return this.raiz.maximo();
+		}
+
+		// Funciona? Não sei, tem que testar depois
+		public void grafico() {
+			System.out.println("Gráfico (?) da Árvore {");
+			this.raiz.grafico();
+			System.out.println("\tnil [stye = filed, fillcolor = black, fontcolor = white];");
+			System.out.println("}");
+		}
 }

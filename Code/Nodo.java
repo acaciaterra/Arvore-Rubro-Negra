@@ -1,7 +1,7 @@
 class Nodo {
-	int v; // Valor
-	Nodo p, esq, dir; // Respectivamente, pai, esquerda e direita
-	boolean ver; // Se true, então é vermelho
+	public int v; // Valor
+	public Nodo p, esq, dir; // Respectivamente, pai, esquerda e direita
+	public boolean ver; // Se true, então é vermelho
 
 /*  public Nodo(int n){
 		this.v = n;
@@ -22,11 +22,11 @@ class Nodo {
 		else return this;
 	}
 
-	public void mostra(){
+	/* public void mostra(){
 		System.out.println(this + ": " + this.esq + " <- (" + this.v + " + " + (this.ver ? "V" : "P") + ") -> " + this.dir);
 		if (this.esq != Arvore.nil) this.esq.mostra();
 		if (this.dir != Arvore.nil) this.dir.mostra();
-	}
+	} */
 
 	public Nodo minimo(){
 		if (this.esq != Arvore.nil) return esq.minimo();
