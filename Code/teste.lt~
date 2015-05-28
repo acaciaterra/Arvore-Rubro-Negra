@@ -1,7 +1,0 @@
-digraph Arvore {
-	"41" [style = filled, fillcolor = black, fontcolor = white];
-	"41" -> "nil" [label = " esq"];
-	"41" -> "nil" [label = " dir"];
-	"nil" [style = filled, fillcolor = black, fontcolor = white];
-}
-
