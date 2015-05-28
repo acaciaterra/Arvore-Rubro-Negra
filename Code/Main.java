@@ -2,7 +2,23 @@ import java.util.*;
 
 class Main {
   public static void main(String args[]) {
-    Random gerador = new Random();
+    Arvore a = new Arvore();
+    
+    
+    a.adiciona(1);
+    a.adiciona(11);
+  //  a.adiciona(21);
+  //  a.adiciona(12);
+  //  a.adiciona(12);
+  //  a.adiciona(16);
+  //  a.adiciona(71);
+  //  a.adiciona(41);
+    
+    // a.remove(3);
+    
+    a.grafico();
+    
+    /* Random gerador = new Random();
     long inicio, aux, media=0, total;
 
     Arvore a = new Arvore();
@@ -31,6 +47,6 @@ class Main {
 
     System.out.printf("Média de tempo de busca: %.10f\n", media/ 10e9);
 
-    System.out.printf("Tempo total: %.10f/n", total/ 10e9);
-  }
+    System.out.printf("Tempo total: %.10f/n", total/ 10e9); */
+  } 
 }

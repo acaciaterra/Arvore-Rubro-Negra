@@ -1,5 +1,5 @@
 class Contador {
-  private Integer i;
+  public Integer i;
 
   public Contador(int i) {
     this.i = i;

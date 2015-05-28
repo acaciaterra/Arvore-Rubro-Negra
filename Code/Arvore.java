@@ -207,13 +207,11 @@ class Arvore {
 		public Nodo maximo() {
 			return this.raiz.maximo();
 		}
-
-		/* public Arvore busca50 (int v) {
-			Arvore x = new Arvore();
-			Contador a = new Contador(0);
-
-			this.raiz.inorderWalk(x, a, v);
-
-			return x;
-		}*/
+		
+		public void grafico() {
+			System.out.println("digraph Arvore {");
+			this.raiz.grafico();
+			System.out.println("\tnil [style = filled, fillcolor = black, fontcolor = white];");
+			System.out.println("}");
+		}
 }
