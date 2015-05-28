@@ -7,7 +7,7 @@ class Arvore {
 	}
 
 	public Arvore (int v) {
-		this.raiz = new Nodo(n, false);
+		this.raiz = new Nodo(v, false);
 	}
 
 	public void rotacao_esq (Nodo x) {
@@ -208,20 +208,12 @@ class Arvore {
 			return this.raiz.maximo();
 		}
 
-		// Funciona? Não sei, tem que testar depois
-		public void grafico() {
-			System.out.println("Gráfico (?) da Árvore {");
-			this.raiz.grafico();
-			System.out.println("\tnil [stye = filed, fillcolor = black, fontcolor = white];");
-			System.out.println("}");
-		}
-
-		public Arvore busca50 (int v) {
+		/* public Arvore busca50 (int v) {
 			Arvore x = new Arvore();
 			Contador a = new Contador(0);
 
 			this.raiz.inorderWalk(x, a, v);
 
 			return x;
-		}
+		}*/
 }
