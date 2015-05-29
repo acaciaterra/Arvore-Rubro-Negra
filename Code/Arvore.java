@@ -1,6 +1,7 @@
 class Arvore {
 	public Nodo raiz;
-	public static Nodo nil = new Nodo(0, false);
+	public static Nodo nil = new Nodo(0, false); // Nodo sentinela. Todos os nodos no último nível da árvore apontarão para a sentinela
+																							// que é sempre de cor preta com valor 0.
 
 	public Arvore () {
 		this.raiz = Arvore.nil;
