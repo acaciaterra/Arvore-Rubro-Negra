@@ -68,23 +68,20 @@ class Arvore {
 			while (z.p.ver) {
 					if (z.p == z.p.p.esq) {
 							y = z.p.p.dir;
-							if (y.ver) { // case 1: while repeats only if y.ver
-									/* if my uncle is ver, I change the color
-									* of my parent and uncle to black and
-									* my grandparent's color to ver
-									* then, go up 2 levels on the tree
-									*/
+							if (y.ver) { // caso 1 (tio é vermelho):
+								// muda a cor do pai e do tipo para preto e dos avós para vermelho.
+								// Então, sobe dois níveis na árvore.
 									z.p.ver = false;
 									y.ver = false;
 									z.p.p.ver = true;
 									z = z.p.p;
 							}
-							else { // uncle is black
-									if (z == z.p.dir) { // case 2
+							else { // Ou seja, tio é preto
+									if (z == z.p.dir) { // caso 2
 											z = z.p;
 											this.rotacao_esq(z);
 									}
-									// case 3
+									// caso 3
 									z.p.ver = false;
 									z.p.p.ver = true;
 									this.rotacao_dir(z.p.p);
@@ -92,17 +89,17 @@ class Arvore {
 					}
 					else {
 							y = z.p.p.esq;
-							if (y.ver) { // case 1
+							if (y.ver) { // caso 1
 									y.ver = z.p.ver = false;
 									z.p.p.ver = true;
 									z = z.p.p;
 							}
 							else {
-									if (z == z.p.esq) { // case 2
+									if (z == z.p.esq) { // caso 2
 											z = z.p;
 											this.rotacao_dir(z);
 									}
-									// case 3
+									// caso 3
 									z.p.ver = false;
 									z.p.p.ver = true;
 									this.rotacao_esq(z.p.p);
@@ -113,95 +110,102 @@ class Arvore {
 	}
 
 	public void remove(int n) {
-		Nodo z = this.encontra(n);
-		Nodo x, y = z;
-		boolean cordey = y.ver;
+			Nodo z = this.encontra(n);
+			Nodo x, y = z;
+			boolean cordey = y.ver;
 
-		if (z.esq == Arvore.nil) {
-			x = z.dir;
-			this.transplant(z, z.dir);
-		}	else if (z.dir == Arvore.nil) {
-			x = z.esq;
-			this.transplant(z, z.esq);
-		}	else {
-			y = z.sucessor();
-			cordey = y.ver;
-			x = y.dir;
+			if(z.v == n) {
+				if (z.esq == Arvore.nil) {
+						x = z.dir;
+						this.transplant(z, z.dir);
+				}
+				else if (z.dir == Arvore.nil) {
+						x = z.esq;
+						this.transplant(z, z.esq);
+				}
+				else {
+						y = z.sucessor();
+						cordey = y.ver;
+						x = y.dir;
 
-			if (y.p == z) x.p = y;
-			else {
-				this.transplant(y, y.dir);
-				y.dir = z.dir;
-				y.dir.p = y;
+						if (y.p == z) x.p = y;
+						else {
+								this.transplant(y, y.dir);
+								y.dir = z.dir;
+								y.dir.p = y;
+						}
+						this.transplant(z, y);
+						y.esq = z.esq;
+						y.esq.p = y;
+						y.ver = z.ver;
+				}
+
+				if (!cordey) this.fixaremocao(x);
 			}
-			this.transplant(z,y);
-			y.esq = z.esq;
-			y.esq.p = y;
-			y.ver = z.ver;
-		}
-
-		if(!cordey) this.fixaremocao(x);
 	}
 
-		private void fixaremocao(Nodo x) {
-			Nodo w;
+		private void fixaremocao(Nodo n) {
+				Nodo x;
 
-			while( x != this.raiz &&  !x.ver) {
-				if(x == x.p.esq) {
-					w = x.p.dir;
+				while (n != this.raiz && !n.ver) {
+						if (n == n.p.esq) {
+								x = n.p.dir;
 
-					if(w.ver) { //caso 1
-						w.ver = false;
-						x.p.ver = true;
-						this.rotacao_esq(x.p);
-						w = x.p.dir;
-					}
-					if (!w.esq.ver && !w.dir.ver) { //caso 2
-						w.ver = true;
-						x = x.p;
-					}	else {
-						if (!w.dir.ver) { // caso 3
-							w.esq.ver = false;
-							w.ver = true;
-							this.rotacao_esq(w);
-							w = x.p.dir;
+								if (x.ver) { // caso 1
+										x.ver = false;
+										n.p.ver = true;
+										this.rotacao_esq(n.p);
+										x = n.p.dir;
+								}
+								if (!x.esq.ver && !x.dir.ver) { // caso 2
+										x.ver = true;
+										n = n.p;
+								}
+								else {
+										if (!x.dir.ver) { // caso 3
+												x.esq.ver = false;
+												x.ver = true;
+												this.rotacao_dir(x);
+												x = n.p.dir;
+										}
+										// caso 4
+										x.ver = n.p.ver;
+										n.p.ver = false;
+										x.dir.ver = false;
+										this.rotacao_esq(n.p);
+										n = this.raiz;
+								}
 						}
-						//caso 4
-						w.ver = x.p.ver;
-						x.p.ver = false;
-						w.dir.ver = false;
-						this.rotacao_esq(x.p);
-						x = this.raiz;
-					}
-				}	else {
-					w = x.p.esq;
+						else {
+								x = n.p.esq;
 
-					if(w.ver) { //caso 1
-						w.ver = false;
-						x.p.ver = true;
-						this.rotacao_dir(x.p);
-						w = x.p.esq;
-					}
-					if (!w.esq.ver && !w.dir.ver) { //caso 2
-						w.ver = true;
-						x = x.p;
-					}	else {
-						if (!w.dir.ver) { // caso 3
-							w.dir.ver = false;
-							w.ver = true;
-							this.rotacao_esq(w);
-							w = x.p.esq;
+								if (x.ver) { // caso 1
+										x.ver = false;
+										n.p.ver = true;
+										this.rotacao_dir(n.p);
+										x = n.p.esq;
+								}
+								if (!x.esq.ver && !x.dir.ver) { // caso 2
+										x.ver = true;
+										n = n.p;
+								}
+								else {
+										if (!x.esq.ver) { // caso 3
+												x.dir.ver = false;
+												x.ver = true;
+												this.rotacao_esq(x);
+												x = n.p.esq;
+										}
+										// caso 4
+										x.ver = n.p.ver;
+										n.p.ver = false;
+										x.esq.ver = false;
+										this.rotacao_dir(n.p);
+										n = this.raiz;
+								}
 						}
-						//caso 4
-						w.ver = x.p.ver;
-						x.p.ver = false;
-						w.esq.ver = false;
-						this.rotacao_dir(x.p);
-						x = this.raiz;
-					}
 				}
-			}
-			x.ver = false;
+				n.ver = false;
 		}
 
 		public void inorderWalk() {

@@ -16,10 +16,10 @@ class Nodo {
 		this.p = this.esq = this.dir = Arvore.nil;
 	}
 
-	public Nodo encontra(int n){
-		if (n < this.v && this.esq != Arvore.nil) return this.esq.encontra(n);
-		else if (n > this.v && this.dir != Arvore.nil) return this.dir.encontra(n);
-		else return this;
+	public Nodo encontra(int n) {
+			if (n < this.v && this.esq != Arvore.nil) return this.esq.encontra(n);
+			else if (n > this.v && this.dir != Arvore.nil) return this.dir.encontra(n);
+			else return this;
 	}
 
  	public void mostra(){
