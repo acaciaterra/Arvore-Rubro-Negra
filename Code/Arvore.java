@@ -82,7 +82,7 @@ class Arvore {
 					if (z.p == z.p.p.esq) {
 							y = z.p.p.dir;
 							if (y.ver) { // caso 1 (tio é vermelho):
-								// muda a cor do pai e do tipo para preto e dos avós para vermelho.
+								// muda a cor do pai e do tio para preto e dos avós para vermelho.
 							 // Então, sobe dois níveis na árvore.
 									z.p.ver = false;
 									y.ver = false;
