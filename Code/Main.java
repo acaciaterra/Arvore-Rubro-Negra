@@ -40,8 +40,8 @@ class Main {
     aux = System.nanoTime(); // Contagem de tempo da busca de 50 nodos
     n50 = a.encontra50(chave);
     media += System.nanoTime() - aux;
-    n50.grafico();
-    
+  //  n50.grafico();
+
     System.out.println("Média de tempo de busca de 50 nodos à partir de uma chave: " + media/ 10e9 + "\n");
 
 
@@ -51,6 +51,6 @@ class Main {
 
     System.out.println("Tempo total: " + total/ 10e9 + "\n");
 
-  //  a.grafico();
+    a.grafico();
   }
 }
