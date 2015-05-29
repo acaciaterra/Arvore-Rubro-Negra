@@ -70,15 +70,15 @@ class Nodo {
 	}
 
 	// a verificar
-	public void encontra50(Contador q, int aux, Arvore res) {
-		if(q.i >= 50) return;
+  public void encontra50(Integer q, int aux, Arvore res) {
+		if(q >= 50) return;
 
 		if (this.esq != Arvore.nil) {
 			this.esq.encontra50(q, aux, res);
 		}
-		if (this.v > aux && q.i < 50) {
+		if (this.v > aux && q < 50) {
 			res.adiciona(this.v);
-			q.i++;
+			q++;
 		}
 		if (this.dir != Arvore.nil) {
 			this.dir.encontra50(q, aux, res);

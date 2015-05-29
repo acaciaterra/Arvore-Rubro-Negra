@@ -3,6 +3,7 @@ class Arvore {
 									 // e é este Nodo que é dado por "inicial" na árvore
 	public static Nodo nil = new Nodo(0, false); // Nodo sentinela. Todos os nodos no último nível da árvore apontarão para a sentinela
 																							// que é sempre de cor preta com valor 0
+	public Integer cont;
 
 	public Arvore() {
 		this.raiz = Arvore.nil;
@@ -215,6 +216,15 @@ class Arvore {
 				}
 				n.ver = false;
 		}
+
+		public Arvore encontra50(int n) {
+        Arvore res = new Arvore();
+				cont = 0;
+				
+        this.raiz.encontra50(cont, n, res);
+
+        return res;
+    }
 
 	// Método para printar código do gráfico, para melhor visualização
 		public void grafico() {
