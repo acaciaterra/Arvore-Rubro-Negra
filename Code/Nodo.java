@@ -13,7 +13,7 @@ class Nodo {
 		this.esq = this.dir = this.p = null;
 	} */
 
-	public Nodo(int n, boolean ver){
+	public Nodo(int n, boolean ver) {
 		this.v = n;
 		this.ver = ver;
 		this.p = this.esq = this.dir = Arvore.nil;
@@ -34,19 +34,19 @@ class Nodo {
 		if (this.dir != Arvore.nil) this.dir.mostra();
 	} */
 
-	public Nodo minimo(){
+	public Nodo minimo() {
 		// Vai mostrar o valor mais baixo presente na árvore a partir do Nodo que está rodando no momento
 		if (this.esq != Arvore.nil) return esq.minimo();
 		else return this;
 	}
 
- public Nodo maximo(){
+ public Nodo maximo() {
 	// Vai mostrar o valor mais alto presente na árvore a partir do Nodo que está rodando no momento
 		if (this.dir != Arvore.nil) return dir.maximo();
 		else return this;
 	}
 
-	public void inorderWalk(){
+	public void inorderWalk() {
 		// Deve percorrer a minha árvore e printar
 		// os valores de todos os nodos pertencentes a ela
 		// de forma ordenada
@@ -55,7 +55,7 @@ class Nodo {
 		if (this.dir != Arvore.nil) this.dir.inorderWalk();
 	}
 
-	 public Nodo predecessor(){
+	 public Nodo predecessor() {
 		// Informa o valor do Nodo que antecede (em termos de valores)
 		// o atual Nodo
 		if (this.esq != Arvore.nil) return this.esq.maximo();
@@ -69,7 +69,23 @@ class Nodo {
 		else return this;
 	}
 
-	// Função para poder enxergar a árvore em gráfico, não que eu saiba exatamente como funciona...
+	// a verificar
+	public void encontra50(Contador q, int aux, Arvore res) {
+		if(q.i >= 50) return;
+
+		if (this.esq != Arvore.nil) {
+			this.esq.encontra50(q, aux, res);
+		}
+		if (this.v > aux && q.i < 50) {
+			res.adiciona(this.v);
+			q.i++;
+		}
+		if (this.dir != Arvore.nil) {
+			this.dir.encontra50(q, aux, res);
+		}
+	}
+
+	// Método para poder enxergar a árvore em gráfico, não que eu saiba exatamente como funciona...
 	public void grafico() {
 		if (this.ver) {
 				System.out.println("\t" + this.v + " [style = filled, fillcolor = red];");
@@ -91,22 +107,6 @@ class Nodo {
 		}
 		else {
 				System.out.println("\t" + this.v + " -> nil [label = \" dir\"];");
-		}
-	}
-
-	// a verificar
-	public void encontra50(Contador q, int aux, Arvore res) {
-		if(q.i >= 50) return;
-
-		if (this.esq != Arvore.nil) {
-			this.esq.encontra50(q, aux, res);
-		}
-		if (this.v > aux && q.i < 50) {
-			res.adiciona(this.v);
-			q.i++;
-		}
-		if (this.dir != Arvore.nil) {
-			this.dir.encontra50(q, aux, res);
 		}
 	}
 }
