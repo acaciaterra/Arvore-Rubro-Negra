@@ -1,10 +1,24 @@
 digraph Arvore {
+	11 [style = filled, fillcolor = black, fontcolor = white];
+	11 -> 1 [label = " esq"];
 	1 [style = filled, fillcolor = black, fontcolor = white];
 	1 -> nil [label = " esq"];
-	1 -> 11 [label = " dir"];
-	11 [style = filled, fillcolor = ver];
-	11 -> nil [label = " esq"];
-	11 -> nil [label = " dir"];
+	1 -> nil [label = " dir"];
+	11 -> 16 [label = " dir"];
+	16 [style = filled, fillcolor = red];
+	16 -> 12 [label = " esq"];
+	12 [style = filled, fillcolor = black, fontcolor = white];
+	12 -> nil [label = " esq"];
+	12 -> nil [label = " dir"];
+	16 -> 41 [label = " dir"];
+	41 [style = filled, fillcolor = black, fontcolor = white];
+	41 -> 21 [label = " esq"];
+	21 [style = filled, fillcolor = red];
+	21 -> nil [label = " esq"];
+	21 -> nil [label = " dir"];
+	41 -> 71 [label = " dir"];
+	71 [style = filled, fillcolor = red];
+	71 -> nil [label = " esq"];
+	71 -> nil [label = " dir"];
 	nil [style = filled, fillcolor = black, fontcolor = white];
 }
-

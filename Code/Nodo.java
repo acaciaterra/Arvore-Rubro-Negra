@@ -17,16 +17,16 @@ class Nodo {
 	}
 
 	public Nodo encontra(int n){
-		if (this.v > this.v && this.dir != Arvore.nil) return this.dir.encontra(n);
-		else if (this.v < this.v && this.esq != Arvore.nil) return this.esq.encontra(n);
+		if (n < this.v && this.esq != Arvore.nil) return this.esq.encontra(n);
+		else if (n > this.v && this.dir != Arvore.nil) return this.dir.encontra(n);
 		else return this;
 	}
 
-	/* public void mostra(){
-		System.out.println(this + ": " + this.esq + " <- (" + this.v + " + " + (this.ver ? "V" : "P") + ") -> " + this.dir);
+ 	public void mostra(){
 		if (this.esq != Arvore.nil) this.esq.mostra();
+		System.out.println(this + ": " + this.esq + " <- (" + this.v + " + " + (this.ver ? "V" : "P") + ") -> " + this.dir);
 		if (this.dir != Arvore.nil) this.dir.mostra();
-	} */
+	}
 
 	public Nodo minimo(){
 		if (this.esq != Arvore.nil) return esq.minimo();
@@ -57,28 +57,31 @@ class Nodo {
 	// Funciona? Não sei, tem que testar depois
 	public void grafico() {
 		if (this.ver) {
-			System.out.println("\t" + this.v + " [style = filled, fillcolor = ver];");
+				System.out.println("\t" + this.v + " [style = filled, fillcolor = red];");
 		} else {
-			System.out.println("\t" + this.v + " [style = filled, fillcolor = black, fontcolor = white];");
+				System.out.println("\t" + this.v + " [style = filled, fillcolor = black, fontcolor = white];");
 		}
 
 		if (this.esq != Arvore.nil) {
-			System.out.println("\t" + this.v + " -> " + this.dir.v + " [label = \" esq\"];");
-			this.esq.grafico();
-		} else {
-			System.out.println("\t" + this.v + " -> nil [label = \" esq\"];");
+				System.out.println("\t" + this.v + " -> " + this.esq.v + " [label = \" esq\"];");
+				this.esq.grafico();
 		}
+		else {
+				System.out.println("\t" + this.v + " -> nil [label = \" esq\"];");
+		}
+
 		if (this.dir != Arvore.nil) {
-			System.out.println("\t" + this.v + " -> " + this.dir.v + " [label = \" dir\"];");
-			this.dir.grafico();
-		} else {
-			System.out.println("\t" + this.v + " -> nil [label = \" dir\"];");
+				System.out.println("\t" + this.v + " -> " + this.dir.v + " [label = \" dir\"];");
+				this.dir.grafico();
+		}
+		else {
+				System.out.println("\t" + this.v + " -> nil [label = \" dir\"];");
 		}
 	}
-		
+
 	public void encontra50(Contador q, int aux, Arvore res) {
 		if(q.i >= 50) return;
-		
+
 		if (this.esq != Arvore.nil) {
 			this.esq.encontra50(q, aux, res);
 		}
