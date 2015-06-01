@@ -23,7 +23,7 @@ class Main {
     }
 
     media /= totalnodos;
-    System.out.println("Média de tempo de inserção: " + media/ 10e9 + "\n");
+    System.out.printf("Média de tempo de inserção: %.10f\n\n", (media/ 10e9));
 
     media = 0;
 
@@ -34,7 +34,7 @@ class Main {
       media += System.nanoTime() - aux;
     }
 
-    System.out.println("Média de tempo de busca: " + media/ 10e9 + "\n");
+    System.out.printf("Média de tempo de busca: %.10f\n\n", (media/ 10e9));
 
     chave = 1000; // A partir deste nodo, serão procurados 50
     aux = System.nanoTime(); // Contagem de tempo da busca de 50 nodos
@@ -42,15 +42,15 @@ class Main {
     media += System.nanoTime() - aux;
   //  n50.grafico();
 
-    System.out.println("Média de tempo de busca de 50 nodos à partir de uma chave: " + media/ 10e9 + "\n");
+    System.out.printf("Média de tempo de busca de 50 nodos à partir de uma chave: %.10f\n\n", (media/ 10e9));
 
 
     total = System.nanoTime() - inicio;
     media /= 10000;
 
 
-    System.out.println("Tempo total: " + total/ 10e9 + "\n");
+    System.out.printf("Tempo total: %.10f\n\n", (total/ 10e9));
 
-    a.grafico();
+    // a.grafico();
   }
 }
